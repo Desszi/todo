@@ -9,8 +9,10 @@
 <body>
     <div class="main-container">
         <div class="container header">
-            <div class="date">
-                Datum
+            <div  class="date">
+                <script>
+                    document.querySelector('.date').innerHTML = Date();
+                </script>
             </div>
             <input type="text" name="todo-input" class="todo-input" placeholder="Take a garbage out" >
             <button class="add-todo">+</button>
