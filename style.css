@@ -80,6 +80,10 @@ body {
     display: none;
 }
 
+.todo .completed {
+    display: none;
+}
+
 .add-todo:hover {
     cursor: pointer;
     background-color: rgb(106, 106, 235);

@@ -13,13 +13,17 @@ const addDeleteEventListener = id =>{
     document.querySelector(`[data-id="${id}"]`)
     .addEventListener('click', ()=> deleteStorage(id));
 }
+
+const createTodo = (text, id) => {
+    const item = document.createElement('div');
+        item.classList.add('todo');
+        item.innerHTML = `<input type="checkbox" class="completed" name="completed" data-set-id="${id}"> ${text} <button class="delete-button" data-id="${id}">X</button>`;
+        todos.insertBefore(item, todos.firstChild);
+}
 let storageId =1;
 const addTodo =() => {
     if(todoInput.value) {
-        const item = document.createElement('div');
-        item.classList.add('todo');
-        item.innerHTML = `${todoInput.value} <button class="delete-button" data-id="${storageId}">X</button>`;
-        todos.insertBefore(item, todos.firstChild);
+        createTodo(todoInput.value, storageId);
         localStorage.setItem(storageId.toString(), todoInput.value);
         addDeleteEventListener(storageId);
         todoInput.value ='';
@@ -28,10 +32,7 @@ const addTodo =() => {
 }
 
 Object.keys(localStorage).forEach((keys) => {
-     const item = document.createElement('div');
-        item.classList.add('todo');
-        item.innerHTML = `${localStorage.getItem(keys)} <button class="delete-button" data-id="${keys}">X</button>`;
-        todos.insertBefore(item, todos.firstChild);
+        createTodo(localStorage.getItem(keys),keys);
         addDeleteEventListener(keys);
 
 });
